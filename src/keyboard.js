@@ -1,5 +1,9 @@
 /* eslint-disable import/extensions */
 import keysObj from './keys.js';
+// Зададим переменные для капса и языка
+let isCapsed = false;
+let isRu = false;
+
 // для начала создадим функцию, которая будет "рисовать "
 function printWindowKeys(width, height, text) {
   let widthIn = width;
@@ -46,72 +50,80 @@ function printWindowKeys(width, height, text) {
     symbol += arr[i];
     symbol += ' \n';
   }
-  console.log(symbol);
   return symbol;
 }
+//
+//
 function renderKeyboard(Shift, Ru) {
   Object.keys(keysObj).forEach((key) => {
     const myKey = document.getElementById(key);
+    const curKey = keysObj[key];
     if (Shift === false && Ru === true) {
-      myKey.innerHTML = printWindowKeys(keysObj[key].width, keysObj[key].height, keysObj[key].textRu);
+      myKey.innerHTML = printWindowKeys(curKey.width, curKey.height, curKey.textRu);
     }
     if (Shift === true && Ru === true) {
-      myKey.innerHTML = printWindowKeys(keysObj[key].width, keysObj[key].height, keysObj[key].textShiftRu);
+      myKey.innerHTML = printWindowKeys(curKey.width, curKey.height, curKey.textShiftRu);
     }
     if (Shift === false && Ru === false) {
-      myKey.innerHTML = printWindowKeys(keysObj[key].width, keysObj[key].height, keysObj[key].textEn);
+      myKey.innerHTML = printWindowKeys(curKey.width, curKey.height, curKey.textEn);
     }
     if (Shift === true && Ru === false) {
-      myKey.innerHTML = printWindowKeys(keysObj[key].width, keysObj[key].height, keysObj[key].textShiftEn);
+      myKey.innerHTML = printWindowKeys(curKey.width, curKey.height, curKey.textShiftEn);
     }
   });
-  // for (const key in keysObj) {
-  //   // const myKey = document.getElementById(key);
-  //   if (Shift === false && Ru === true) {
-  //     myKey.innerHTML = printWindowKeys(keysObj[key].width, keysObj[key].height, keysObj[key].textRu);
-  //   }
-  //   if (Shift === true && Ru === true) {
-  //     myKey.innerHTML = printWindowKeys(keysObj[key].width, keysObj[key].height, keysObj[key].textShiftRu);
-  //   }
-  //   if (Shift === false && Ru === false) {
-  //     myKey.innerHTML = printWindowKeys(keysObj[key].width, keysObj[key].height, keysObj[key].textEn);
-  //   }
-  //   if (Shift === true && Ru === false) {
-  //     myKey.innerHTML = printWindowKeys(keysObj[key].width, keysObj[key].height, keysObj[key].textShiftEn);
-  //   }
-  // }
 }
 
-let isCapsed = false;
-let isRu = true;
-
-const textarea = document.querySelector('.textarea');
+/* зададим local storage и в нем же будем вызывть рендер клавиш, эту функцию будем вызывать при
+загрузке страницы */
+function getLocalStorage() {
+  if (localStorage.getItem('isRu') === 'true') {
+    isRu = true;
+  } else if (localStorage.getItem('isRu') === 'false') {
+    isRu = false;
+  }
+  if (localStorage.getItem('isCapsed') === 'true') {
+    isCapsed = true;
+  } else if (localStorage.getItem('isCapsed') === 'false') {
+    isCapsed = false;
+  }
+  renderKeyboard(isCapsed, isRu);
+}
 
 function eventPressed(event) {
+  const textarea = document.querySelector('.textarea');
   // отключим поведение таба по умолчанию
-  if (event.key === 'Tab') {
-    event.preventDefault();
-  }
+  if (event.key === 'Tab') event.preventDefault();
   textarea.setAttribute('readonly', 'readonly');
-  const one = document.getElementById(event.code);
-  one.classList.add('pressed');
+  const key = document.getElementById(event.code);
+  key.classList.add('pressed');
   // TODO Сделать так чтобы клавиши могли быть "зажаты" при удерживании мышкой
   // if (event.code && one.classList.contains('pressed')) {
 
   // }
-  console.log(event);
+  // добавим условия для шифта
   if (event.code === 'ShiftRight' || event.code === 'ShiftLeft') {
     renderKeyboard(!isCapsed, isRu);
   }
+  // добавим условия для капса
   if (event.code === 'CapsLock') {
     isCapsed = !isCapsed;
+    localStorage.setItem('isCapsed', isCapsed);
     renderKeyboard(isCapsed, isRu);
   }
-  if (event.shiftKey && event.altKey || event.code === 'AltRight' && event.shiftKey || event.code === 'Lang') {
+  // добавим условия для шифта и альта + правого шифта и альта + кнопки языка для смены языка
+  if (event.shiftKey && event.altKey) {
     isRu = !isRu;
+    localStorage.setItem('isRu', isRu);
+    renderKeyboard(isCapsed, isRu);
+  } else if (event.code === 'AltRight' && event.shiftKey) {
+    isRu = !isRu;
+    localStorage.setItem('isRu', isRu);
+    renderKeyboard(isCapsed, isRu);
+  } else if (event.code === 'Lang') {
+    isRu = !isRu;
+    localStorage.setItem('isRu', isRu);
     renderKeyboard(isCapsed, isRu);
   }
-
   //
   let cursor = textarea.selectionStart;
   textarea.focus();
@@ -124,18 +136,12 @@ function eventPressed(event) {
     } else cursor -= 1;
     textarea.value = areaBeforeMyCursor + areaAfterMyCursor;
     textarea.setSelectionRange(cursor + 1, cursor + 1);
-
-    //
   } else if (event.code === 'Tab') {
-    // event.code.preventDefault();
     textarea.value += '\t';
-    // todo + space
   } else if (event.code === 'Enter') {
     textarea.value += '\n';
-    // todo enter
   } else if (event.code === 'Space') {
     textarea.value += ' ';
-    // todo + space
   } else if (event.code === 'ArrowUp') {
     const areaBeforeMyCursor = textarea.value.substring(0, cursor).split('\n');
     if (areaBeforeMyCursor.length === 1
@@ -177,16 +183,16 @@ function eventPressed(event) {
     //
   } else {
     let char = '';
-    if ((isCapsed ^ event.shiftKey) && isRu) {
+    if ((isCapsed || event.shiftKey) && isRu) {
       char = `${keysObj[event.code].textShiftRu}`;
     }
-    if (!(isCapsed ^ event.shiftKey) && isRu) {
+    if (!(isCapsed || event.shiftKey) && isRu) {
       char = `${keysObj[event.code].textRu}`;
     }
-    if ((isCapsed ^ event.shiftKey) && !isRu) {
+    if ((isCapsed || event.shiftKey) && !isRu) {
       char = `${keysObj[event.code].textShiftEn}`;
     }
-    if (!(isCapsed ^ event.shiftKey) && !isRu) {
+    if (!(isCapsed || event.shiftKey) && !isRu) {
       char = `${keysObj[event.code].textEn}`;
     }
     const areaBeforeMyCursor = textarea.value.substring(0, cursor);
@@ -197,6 +203,7 @@ function eventPressed(event) {
 }
 
 function eventReleased(event) {
+  const textarea = document.querySelector('.textarea');
   textarea.focus();
   textarea.removeAttribute('readonly', 'readonly');
   const key = document.getElementById(event.code);
@@ -209,53 +216,85 @@ function eventReleased(event) {
 }
 
 window.onload = () => {
-  // todo сгенерить html
-  renderKeyboard(isCapsed, isRu);
+  // создадим генерацию DOM через js
+  // header
+  const header = document.createElement('header');
+  header.className = 'header';
+  // title
+  const title = document.createElement('pre');
+  title.className = 'header-title';
+  title.innerHTML = String.raw`
+  _____      _             _  __          
+ |  __ \    | |           | |/ /          
+ | |__) |___| |_ _ __ ___ | ' / ___ _   _ 
+ |  _  // _ \ __| '__/ _ \|  < / _ \ | | |
+ | | \ \  __/ |_| | | (_) | . \  __/ |_| |
+ |_|  \_\___|\__|_|  \___/|_|\_\___|\__, |
+                                     __/ |
+                                    |___/ 
+  `;
+  header.appendChild(title);
+  // div for info
+  const infoDiv = document.createElement('div');
+  infoDiv.className = 'header-info';
+  header.appendChild(infoDiv);
+  // info for p
+  const infoLang = document.createElement('p');
+  const infoMade = document.createElement('p');
+  infoLang.className = 'header-info__lang';
+  infoMade.className = 'header-info__made';
+  infoLang.innerHTML = 'Change Language: Shift + Alt';
+  infoMade.innerHTML = 'Made for: Windows';
+  infoDiv.appendChild(infoLang);
+  infoDiv.appendChild(infoMade);
+  document.body.appendChild(header);
+  // textarea
+  const textfield = document.createElement('textarea');
+  textfield.className = 'textarea';
+  document.body.appendChild(textfield);
+  const keyboard = document.createElement('div');
+  keyboard.className = 'keyboard';
+  const arr = new Map();
+  //
+  Object.keys(keysObj).forEach((key) => {
+    if (!arr.has(keysObj[key].row)) {
+      const elem = document.createElement('div');
+      elem.className = 'keyboard-row';
+      arr.set(keysObj[key].row, elem);
+      // console.log(arr);
+    }
+    const myKey = document.createElement('pre');
+    myKey.className = 'key';
+    myKey.id = `${key}`;
+    arr.get(keysObj[key].row).appendChild(myKey);
+  });
+  arr.forEach((key) => {
+    keyboard.appendChild(key);
+  });
+  document.body.appendChild(keyboard);
+  // вызываем local storage + генерируем клавиши
+  getLocalStorage();
+  // вешаем слушатели на keydown, keyup
   document.addEventListener('keydown', eventPressed);
   document.addEventListener('keyup', eventReleased);
+
+  const key = document.querySelectorAll('.key');
+  key.forEach((item) => item.addEventListener('mousedown', (event) => {
+    const currentItem = event.target.id;
+    eventPressed({
+      code: currentItem,
+    });
+  }));
+  key.forEach((item) => item.addEventListener('mouseup', (event) => {
+    const currentItem = event.target.id;
+    eventReleased({
+      code: currentItem,
+    });
+  }));
+  key.forEach((item) => item.addEventListener('mouseleave', (event) => {
+    const currentItem = event.target.id;
+    eventReleased({
+      code: currentItem,
+    });
+  }));
 };
-
-const key = document.querySelectorAll('.key');
-key.forEach((item) => item.addEventListener('mousedown', (event) => {
-  const currentItem = event.target.id;
-  eventPressed({
-    code: currentItem,
-  });
-}));
-key.forEach((item) => item.addEventListener('mouseup', (event) => {
-  const currentItem = event.target.id;
-  eventReleased({
-    code: currentItem,
-  });
-}));
-key.forEach((item) => item.addEventListener('mouseleave', (event) => {
-  const currentItem = event.target.id;
-  eventReleased({
-    code: currentItem,
-  });
-}));
-
-// function print(width, height, text, id) {
-//   let str = `<div class = "key" id = "${id}">\n`;
-//   str += printWindowKeys(width, height, text);
-//   str += '</div>\n';
-//   return str;
-// }
-// let keyboard = document.querySelector('.keyboard');
-// function create() {
-//   let str = '';
-//   str += '<div style="display: flex; position: relative; height: 60px">\n';
-//   for (let i = 0; i < 9; i += 1) {
-//     str += print(5, 5, `${i}`, `Key${i}`);
-//   }
-//   str += '</div>\n';
-//   keyboard.innerHTML = str;
-// }
-//
-// поменять размеры
-// console.log(keysObj.digit1);
-
-// function init() {
-//   let body = document.getElementsByTagName('body');
-
-// }

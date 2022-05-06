@@ -7,6 +7,7 @@ const keysObj = {
     textShiftEn: '~',
     width: 6,
     height: 4,
+    row: 1,
   },
   Digit1: {
     textRu: '1',
@@ -15,6 +16,7 @@ const keysObj = {
     textShiftEn: '!',
     width: 6,
     height: 4,
+    row: 1,
   },
   Digit2: {
     textRu: '2',
@@ -23,6 +25,7 @@ const keysObj = {
     textShiftEn: '@',
     width: 6,
     height: 4,
+    row: 1,
   },
   Digit3: {
     textRu: '3',
@@ -31,6 +34,7 @@ const keysObj = {
     textShiftEn: '#',
     width: 6,
     height: 4,
+    row: 1,
   },
   Digit4: {
     textRu: '4',
@@ -39,6 +43,7 @@ const keysObj = {
     textShiftEn: '$',
     width: 6,
     height: 4,
+    row: 1,
   },
   Digit5: {
     textRu: '5',
@@ -47,6 +52,7 @@ const keysObj = {
     textShiftEn: '%',
     width: 6,
     height: 4,
+    row: 1,
   },
   Digit6: {
     textRu: '6',
@@ -55,6 +61,7 @@ const keysObj = {
     textShiftEn: '^',
     width: 6,
     height: 4,
+    row: 1,
   },
   Digit7: {
     textRu: '7',
@@ -63,6 +70,7 @@ const keysObj = {
     textShiftEn: '&',
     width: 6,
     height: 4,
+    row: 1,
   },
   Digit8: {
     textRu: '8',
@@ -71,6 +79,7 @@ const keysObj = {
     textShiftEn: '*',
     width: 6,
     height: 4,
+    row: 1,
   },
   Digit9: {
     textRu: '9',
@@ -79,6 +88,7 @@ const keysObj = {
     textShiftEn: '(',
     width: 6,
     height: 4,
+    row: 1,
   },
   Digit0: {
     textRu: '0',
@@ -87,6 +97,7 @@ const keysObj = {
     textShiftEn: ')',
     width: 6,
     height: 4,
+    row: 1,
   },
   Minus: {
     textRu: '-',
@@ -95,6 +106,7 @@ const keysObj = {
     textShiftEn: '_',
     width: 6,
     height: 4,
+    row: 1,
   },
   Equal: {
     textRu: '=',
@@ -103,6 +115,7 @@ const keysObj = {
     textShiftEn: '+',
     width: 6,
     height: 4,
+    row: 1,
   },
   Backspace: {
     textRu: 'Backspace',
@@ -111,6 +124,7 @@ const keysObj = {
     textShiftEn: 'Backspace',
     width: 17,
     height: 4,
+    row: 1,
   },
   // second row
   Tab: {
@@ -120,6 +134,7 @@ const keysObj = {
     textShiftEn: 'Tab',
     width: 11,
     height: 4,
+    row: 2,
   },
   KeyQ: {
     textRu: 'й',
@@ -128,6 +143,7 @@ const keysObj = {
     textShiftEn: 'Q',
     width: 6,
     height: 4,
+    row: 2,
   },
   KeyW: {
     textRu: 'ц',
@@ -136,6 +152,7 @@ const keysObj = {
     textShiftEn: 'W',
     width: 6,
     height: 4,
+    row: 2,
   },
   KeyE: {
     textRu: 'у',
@@ -144,6 +161,7 @@ const keysObj = {
     textShiftEn: 'E',
     width: 6,
     height: 4,
+    row: 2,
   },
   KeyR: {
     textRu: 'к',
@@ -152,6 +170,7 @@ const keysObj = {
     textShiftEn: 'R',
     width: 6,
     height: 4,
+    row: 2,
   },
   KeyT: {
     textRu: 'е',
@@ -160,6 +179,7 @@ const keysObj = {
     textShiftEn: 'T',
     width: 6,
     height: 4,
+    row: 2,
   },
   KeyY: {
     textRu: 'н',
@@ -168,6 +188,7 @@ const keysObj = {
     textShiftEn: 'Y',
     width: 6,
     height: 4,
+    row: 2,
   },
   KeyU: {
     textRu: 'г',
@@ -176,6 +197,7 @@ const keysObj = {
     textShiftEn: 'U',
     width: 6,
     height: 4,
+    row: 2,
   },
   KeyI: {
     textRu: 'ш',
@@ -184,6 +206,7 @@ const keysObj = {
     textShiftEn: 'I',
     width: 6,
     height: 4,
+    row: 2,
   },
   KeyO: {
     textRu: 'щ',
@@ -192,6 +215,7 @@ const keysObj = {
     textShiftEn: 'O',
     width: 6,
     height: 4,
+    row: 2,
   },
   KeyP: {
     textRu: 'з',
@@ -200,6 +224,7 @@ const keysObj = {
     textShiftEn: 'P',
     width: 6,
     height: 4,
+    row: 2,
   },
   BracketLeft: {
     textRu: 'х',
@@ -208,6 +233,7 @@ const keysObj = {
     textShiftEn: '{',
     width: 6,
     height: 4,
+    row: 2,
   },
   BracketRight: {
     textRu: 'ъ',
@@ -216,6 +242,7 @@ const keysObj = {
     textShiftEn: '}',
     width: 6,
     height: 4,
+    row: 2,
   },
   Backslash: {
     textRu: '\\',
@@ -224,6 +251,7 @@ const keysObj = {
     textShiftEn: '|',
     width: 12,
     height: 4,
+    row: 2,
   },
   // third row
   CapsLock: {
@@ -233,6 +261,7 @@ const keysObj = {
     textShiftEn: 'CapsLock*',
     width: 13,
     height: 4,
+    row: 3,
   },
   KeyA: {
     textRu: 'ф',
@@ -241,6 +270,7 @@ const keysObj = {
     textShiftEn: 'A',
     width: 6,
     height: 4,
+    row: 3,
   },
   KeyS: {
     textRu: 'ы',
@@ -249,6 +279,7 @@ const keysObj = {
     textShiftEn: 'S',
     width: 6,
     height: 4,
+    row: 3,
   },
   KeyD: {
     textRu: 'в',
@@ -257,6 +288,7 @@ const keysObj = {
     textShiftEn: 'D',
     width: 6,
     height: 4,
+    row: 3,
   },
   KeyF: {
     textRu: 'а',
@@ -265,6 +297,7 @@ const keysObj = {
     textShiftEn: 'F',
     width: 6,
     height: 4,
+    row: 3,
   },
   KeyG: {
     textRu: 'п',
@@ -273,6 +306,7 @@ const keysObj = {
     textShiftEn: 'G',
     width: 6,
     height: 4,
+    row: 3,
   },
   KeyH: {
     textRu: 'р',
@@ -281,6 +315,7 @@ const keysObj = {
     textShiftEn: 'H',
     width: 6,
     height: 4,
+    row: 3,
   },
   KeyJ: {
     textRu: 'о',
@@ -289,6 +324,7 @@ const keysObj = {
     textShiftEn: 'J',
     width: 6,
     height: 4,
+    row: 3,
   },
   KeyK: {
     textRu: 'л',
@@ -297,6 +333,7 @@ const keysObj = {
     textShiftEn: 'K',
     width: 6,
     height: 4,
+    row: 3,
   },
   KeyL: {
     textRu: 'д',
@@ -305,6 +342,7 @@ const keysObj = {
     textShiftEn: 'L',
     width: 6,
     height: 4,
+    row: 3,
   },
   Semicolon: {
     textRu: 'ж',
@@ -313,6 +351,7 @@ const keysObj = {
     textShiftEn: ':',
     width: 6,
     height: 4,
+    row: 3,
   },
   Quote: {
     textRu: 'э',
@@ -321,6 +360,7 @@ const keysObj = {
     textShiftEn: '"',
     width: 6,
     height: 4,
+    row: 3,
   },
   Enter: {
     textRu: 'Enter',
@@ -329,6 +369,7 @@ const keysObj = {
     textShiftEn: 'Enter',
     width: 17,
     height: 4,
+    row: 3,
   },
   // four row
   ShiftLeft: {
@@ -338,6 +379,7 @@ const keysObj = {
     textShiftEn: 'Shift',
     width: 16,
     height: 4,
+    row: 4,
   },
   KeyZ: {
     textRu: 'я',
@@ -346,6 +388,7 @@ const keysObj = {
     textShiftEn: 'Z',
     width: 6,
     height: 4,
+    row: 4,
   },
   KeyX: {
     textRu: 'ч',
@@ -354,6 +397,7 @@ const keysObj = {
     textShiftEn: 'X',
     width: 6,
     height: 4,
+    row: 4,
   },
   KeyC: {
     textRu: 'с',
@@ -362,6 +406,7 @@ const keysObj = {
     textShiftEn: 'C',
     width: 6,
     height: 4,
+    row: 4,
   },
   KeyV: {
     textRu: 'м',
@@ -370,6 +415,7 @@ const keysObj = {
     textShiftEn: 'V',
     width: 6,
     height: 4,
+    row: 4,
   },
   KeyB: {
     textRu: 'и',
@@ -378,6 +424,7 @@ const keysObj = {
     textShiftEn: 'B',
     width: 6,
     height: 4,
+    row: 4,
   },
   KeyN: {
     textRu: 'т',
@@ -386,6 +433,7 @@ const keysObj = {
     textShiftEn: 'N',
     width: 6,
     height: 4,
+    row: 4,
   },
   KeyM: {
     textRu: 'ь',
@@ -394,6 +442,7 @@ const keysObj = {
     textShiftEn: 'M',
     width: 6,
     height: 4,
+    row: 4,
   },
   Comma: {
     textRu: 'б',
@@ -402,6 +451,7 @@ const keysObj = {
     textShiftEn: '<',
     width: 6,
     height: 4,
+    row: 4,
   },
   Period: {
     textRu: 'ю',
@@ -410,6 +460,7 @@ const keysObj = {
     textShiftEn: '>',
     width: 6,
     height: 4,
+    row: 4,
   },
   Slash: {
     textRu: '.',
@@ -418,6 +469,7 @@ const keysObj = {
     textShiftEn: '?',
     width: 6,
     height: 4,
+    row: 4,
   },
   ArrowUp: {
     textRu: '▲',
@@ -426,6 +478,7 @@ const keysObj = {
     textShiftEn: '▲',
     width: 6,
     height: 4,
+    row: 4,
   },
   ShiftRight: {
     textRu: 'Shift',
@@ -434,6 +487,7 @@ const keysObj = {
     textShiftEn: 'Shift',
     width: 14,
     height: 4,
+    row: 4,
   },
   // five row
   ControlLeft: {
@@ -443,6 +497,7 @@ const keysObj = {
     textShiftEn: 'Ctrl',
     width: 10,
     height: 4,
+    row: 5,
   },
   AltLeft: {
     textRu: 'Alt',
@@ -451,6 +506,7 @@ const keysObj = {
     textShiftEn: 'Alt',
     width: 10,
     height: 4,
+    row: 5,
   },
   Space: {
     textRu: 'Space',
@@ -459,6 +515,7 @@ const keysObj = {
     textShiftEn: 'Space',
     width: 35,
     height: 4,
+    row: 5,
   },
   AltRight: {
     textRu: 'Alt',
@@ -467,6 +524,7 @@ const keysObj = {
     textShiftEn: 'Alt',
     width: 10,
     height: 4,
+    row: 5,
   },
   ControlRight: {
     textRu: 'Ctrl',
@@ -475,6 +533,7 @@ const keysObj = {
     textShiftEn: 'Ctrl',
     width: 10,
     height: 4,
+    row: 5,
   },
   ArrowLeft: {
     textRu: '◄',
@@ -483,6 +542,7 @@ const keysObj = {
     textShiftEn: '◄',
     width: 6,
     height: 4,
+    row: 5,
   },
   ArrowDown: {
     textRu: '▼',
@@ -491,6 +551,7 @@ const keysObj = {
     textShiftEn: '▼',
     width: 6,
     height: 4,
+    row: 5,
   },
   ArrowRight: {
     textRu: '►',
@@ -499,6 +560,7 @@ const keysObj = {
     textShiftEn: '►',
     width: 6,
     height: 4,
+    row: 5,
   },
   // for lang-change
   Lang: {
@@ -508,7 +570,8 @@ const keysObj = {
     textShiftEn: 'EN',
     width: 7,
     height: 4,
+    row: 5,
   },
 };
-// keysObj = Object.entries(keysObj);
+
 export default keysObj;

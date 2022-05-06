@@ -74,6 +74,9 @@ body {
   text-align: center;
   color: pink;
 }
+.header-title {
+  font-size: 15px;
+}
 .header-info {
   display: flex;
   justify-content: space-between;
