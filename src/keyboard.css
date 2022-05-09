@@ -54,11 +54,7 @@ a {
   text-decoration: none;
 }
 
-/* onMouseOver="this.style.fontStyle='italic'; this.style.fontWeight='bold'; this.style.paddingTop='10px';" onMouseOut="this.style.fontStyle='normal'; this.style.fontWeight='normal'; this.style.paddingTop='0px'; */
-
- /* style="display: flex; position: relative; height: 60px" */
 body {
-  /* font-family: 'Inconsolata', monospace; */
   font-family: 'Courier New', Courier, monospace;
 }
 .header {

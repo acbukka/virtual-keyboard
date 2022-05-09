@@ -1,3 +1,5 @@
+/* eslint linebreak-style: ["error", "unix"] */
+/* eslint linebreak-style: ["error", "windows"] */
 const keysObj = {
   // first row
   Backquote: {
