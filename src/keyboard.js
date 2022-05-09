@@ -94,6 +94,7 @@ function eventPressed(event) {
   const textarea = document.querySelector('.textarea');
   // отключим поведение таба по умолчанию
   if (event.key === 'Tab') event.preventDefault();
+  if (event.key === 'Alt') event.preventDefault();
   textarea.setAttribute('readonly', 'readonly');
   const key = document.getElementById(event.code);
   key.classList.add('pressed');
