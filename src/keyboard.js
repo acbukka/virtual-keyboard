@@ -134,15 +134,6 @@ function eventPressed(event) {
     } else cursor -= 1;
     textarea.value = areaBeforeMyCursor + areaAfterMyCursor;
     textarea.setSelectionRange(cursor + 1, cursor + 1);
-  } else if (event.code === 'Delete') {
-    const areaBeforeMyCursor = textarea.value.substring(0, cursor);
-    let areaAfterMyCursor = textarea.value.substring(textarea.selectionEnd);
-    if (cursor === textarea.selectionStart) {
-      areaAfterMyCursor = areaAfterMyCursor.slice(0, -1);
-      cursor -= (cursor > 0) ? 2 : 1;
-    }
-    textarea.value = areaBeforeMyCursor + areaAfterMyCursor;
-    textarea.setSelectionRange(cursor + 1, cursor + 1);
   } else if (event.code === 'Tab') {
     textarea.value += '\t';
   } else if (event.code === 'Enter') {
