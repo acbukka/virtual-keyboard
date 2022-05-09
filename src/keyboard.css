@@ -87,14 +87,12 @@ body {
    height: 350px;
    padding: 5px 0;
    padding: 5px 5px 10px 15px;
-   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+   border: 1px solid black;
    user-select: none;
    transition: bottom 0.4s; 
    height: 410px;
-    /* background: ; */
  }
 .textarea {
-  /* font-family: 'Inconsolata', monospace; */
   font-family: 'Courier New', Courier, monospace;
   display: block;
   width: 952px;
@@ -128,13 +126,10 @@ pre {
   height: 75px;
   margin: 0 auto;
   width: fit-content;
-  /* width: 950px; */
   display: flex;
 }
 .key:hover {
-  /* padding-top: 10px; */
   font-weight: bold;
-  /* font-style: italic; */
 } 
 
 .pressed {
