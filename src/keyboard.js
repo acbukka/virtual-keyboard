@@ -88,7 +88,7 @@ function getLocalStorage() {
   }
   renderKeyboard(isCapsed, isRu);
 }
-
+// основная функция "нажимания кнопки"
 function eventPressed(event) {
   const textarea = document.querySelector('.textarea');
   // отключим поведение таба по умолчанию
@@ -96,10 +96,6 @@ function eventPressed(event) {
   textarea.setAttribute('readonly', 'readonly');
   const key = document.getElementById(event.code);
   key.classList.add('pressed');
-  // TODO Сделать так чтобы клавиши могли быть "зажаты" при удерживании мышкой
-  // if (event.code && one.classList.contains('pressed')) {
-
-  // }
   // добавим условия для шифта
   if (event.code === 'ShiftRight' || event.code === 'ShiftLeft') {
     renderKeyboard(!isCapsed, isRu);
@@ -124,7 +120,7 @@ function eventPressed(event) {
     localStorage.setItem('isRu', isRu);
     renderKeyboard(isCapsed, isRu);
   }
-  //
+  // добавим условия для Backspace
   let cursor = textarea.selectionStart;
   textarea.focus();
   if (event.code === 'Backspace') {
@@ -134,6 +130,15 @@ function eventPressed(event) {
       areaBeforeMyCursor = areaBeforeMyCursor.slice(0, -1);
       cursor -= (cursor > 0) ? 2 : 1;
     } else cursor -= 1;
+    textarea.value = areaBeforeMyCursor + areaAfterMyCursor;
+    textarea.setSelectionRange(cursor + 1, cursor + 1);
+  } else if (event.code === 'Delete') {
+    const areaBeforeMyCursor = textarea.value.substring(0, cursor);
+    let areaAfterMyCursor = textarea.value.substring(textarea.selectionEnd);
+    if (cursor === textarea.selectionStart) {
+      areaAfterMyCursor = areaAfterMyCursor.slice(0, -1);
+      cursor -= (cursor > 0) ? 2 : 1;
+    }
     textarea.value = areaBeforeMyCursor + areaAfterMyCursor;
     textarea.setSelectionRange(cursor + 1, cursor + 1);
   } else if (event.code === 'Tab') {
@@ -201,7 +206,7 @@ function eventPressed(event) {
     textarea.setSelectionRange(cursor + 1, cursor + 1);
   }
 }
-
+// функция "отпускания кнопки"
 function eventReleased(event) {
   const textarea = document.querySelector('.textarea');
   textarea.focus();
@@ -231,8 +236,8 @@ window.onload = () => {
  | | \ \  __/ |_| | | (_) | . \  __/ |_| |
  |_|  \_\___|\__|_|  \___/|_|\_\___|\__, |
                                      __/ |
-                                    |___/ 
-  `;
+                                    |___/
+                                    `;
   header.appendChild(title);
   // div for info
   const infoDiv = document.createElement('div');
@@ -274,11 +279,12 @@ window.onload = () => {
   document.body.appendChild(keyboard);
   // вызываем local storage + генерируем клавиши
   getLocalStorage();
-  // вешаем слушатели на keydown, keyup
+  // вешаем слушатели клавиш реальной клавиатуры на keydown, keyup
   document.addEventListener('keydown', eventPressed);
   document.addEventListener('keyup', eventReleased);
-
+  // задаем переменную для всех div клавиш
   const key = document.querySelectorAll('.key');
+  // вешаем слушатели на клики мышкой на mousedown, mouseup и mouseleave
   key.forEach((item) => item.addEventListener('mousedown', (event) => {
     const currentItem = event.target.id;
     eventPressed({
@@ -298,3 +304,5 @@ window.onload = () => {
     });
   }));
 };
+// TODO Сделать так чтобы клавиши могли быть "зажаты" при удерживании мышкой
+// TODO смена темы и звуки клавиш
